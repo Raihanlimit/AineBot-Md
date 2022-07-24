@@ -1,7 +1,7 @@
 let handler = async m => m.reply(`
 ╭─「 Donasi 」
 │
-│ DONASI SEIKHLASNYA BANG :)
+│  DONASI SEIKHLASNYA BANG :)
 │
 │ - E-money
 │ • 0882009085754 ( Dana/OVO/Gopay )
