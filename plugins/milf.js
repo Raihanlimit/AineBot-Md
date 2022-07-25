@@ -7,5 +7,5 @@ handler.help = ['milf']
 handler.tags = ['internet']
 handler.command = /^(milf)$/i
 handler.private = true
-handler.limit = true
+handler.premium = true
 module.exports = handler
