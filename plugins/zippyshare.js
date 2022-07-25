@@ -12,7 +12,7 @@ handler.help = ['ippyshare'].map(v => 'z' + v + ' <url>')
 handler.tags = ['downloader']
 handler.command = /^z(ippydl|ippyshare)$/i
 
-handler.limit = true
+handler.limit = false
 handler.premium = true
 
 module.exports = handler
