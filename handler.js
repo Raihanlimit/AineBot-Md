@@ -59,6 +59,7 @@ module.exports = {
                     if (!isNumber(user.healtmonster)) user.healtmonster = 0
                     if (!isNumber(user.pc)) user.pc = 0
                     if (!isNumber(user.spammer)) user.spammer = 0
+                    if (!isNumber(user.limitspam)) user.limitspam = 0
                     if (!isNumber(user.expg)) user.expg = 0
                     if (!isNumber(user.trash)) user.trash = 0
                     if (!isNumber(user.sampah)) user.sampah = 0
@@ -270,6 +271,7 @@ module.exports = {
                     if (!isNumber(user.lastmonthly)) user.lastmonthly = 0
                     if (!isNumber(user.lastmulung)) user.lastmulung = 0
                     if (!isNumber(user.lastdagang)) user.lastdagang = 0
+                    if (!isNumber(user.lastbisnis)) user.lastbisnis = 0
                     if (!isNumber(user.lastnebang)) user.lastnebang = 0
                     if (!isNumber(user.lastberkebon))user.lastberkebon = 0
                     if (!isNumber(user.lastadventure)) user.lastadventure = 0
@@ -278,6 +280,7 @@ module.exports = {
                     limit: 1000,
                     joinlimit: 1,
                     spammer: 0,
+                    limitspam: 0,
                     money: 10000,
                     bank: 10000,
                     health: 100,
@@ -510,6 +513,7 @@ module.exports = {
                     lasteasy: 0,
                     lastmulung: 0,
                     lastdagang: 0,
+                    lastbisnis: 0,
                     lastnebang: 0,
                     lastberkebon: 0,
                     lastadventure: 0,
@@ -528,6 +532,7 @@ module.exports = {
                     if (!('antiLink' in chat)) chat.antiLink = false 
                     if (!('antiSticker' in chat)) chat.antiSticker = false
                     if (!('stiker' in chat)) chat.stiker = false
+                    if (!('simi' in chat)) chat.simi = false
                     if (!('viewonce' in chat)) chat.viewonce = false
                     if (!('useDocument' in chat)) chat.useDocument = false
                     if (!('antiToxic' in chat)) chat.antiToxic = false
@@ -543,12 +548,20 @@ module.exports = {
                     delete: true,
                     antiLink: false,
                     stiker: false,
+                    simi: false,
                     antiSticker: false,
                     viewonce: false,
                     useDocument: false,
                     antiToxic: false,
                     expired: 0,
                 }
+                let settings = global.db.data.settings[this.user.jid]
+                if (typeof settings !== 'object') global.db.data.settings[this.user.jid] = {}
+                if (settings) {
+		            if (!'anticall' in settings) settings.anticall = true
+		        } else global.db.data.settings[this.user.jid] = {
+		            anticall: true,
+		        }
             } catch (e) {
                 console.error(e)
             }
@@ -589,7 +602,10 @@ module.exports = {
             //     }
             // }
 
-            if (m.isBaileys) return
+            if (m.isBaileys) return 
+            if (m.chat.endsWith('broadcast') || m.key.remoteJid.endsWith('broadcast')) return // Supaya tidak merespon di status
+            let blockList = await conn.fetchBlocklist()
+            if (blockList?.includes(m.sender)) return
             m.exp += Math.ceil(Math.random() * 10)
 
             let usedPrefix
@@ -891,6 +907,29 @@ Untuk mematikan fitur ini, ketik
     }
 },
 
+conn.ws.on('CB:call', async function callUpdatePushToDb(json) {
+        let call = json.tag
+        let callerId = json.attrs.from
+        console.log({ call, callerId })
+        let users = global.db.data.users
+        let user = users[callerId] || {}
+        if (user.whitelist) return
+        if (!global.db.data.settings[conn.user.jid].anticall) return
+        switch (conn.callWhitelistMode) {
+          case 'mycontact':
+            if (callerId in conn.contacts && 'short' in conn.contacts[callerId])
+            return
+          break
+        }
+        const data = global.owner.filter(([id, isCreator]) => id && isCreator)
+        let sentMsg = await conn.reply(callerId, `Sistem otomatis block, jangan menelepon bot silahkan hubungi owner untuk dibuka!`)
+        await conn.sendContact(callerId, data.map(([id, name]) => [id, name]), sentMsg)
+        await conn.updateBlockStatus(callerId, 'block')
+        await conn.reply(owner[0]+'@s.whatsapp.net', `*NOTIF CALLER BOT!*\n\n@${callerId.split`@`[0]} telah menelpon *${conn.user.name}*\n\n ${callerId.split`@`[0]}\n`, null, { mentions: [callerId] })
+        conn.delay(10000) // supaya tidak spam
+    })
+
+/*
 conn.ws.on('CB:call', async (json) => {
     console.log(json.content)
     const callerId = json.content[0].attrs['call-creator']
@@ -900,7 +939,7 @@ conn.ws.on('CB:call', async (json) => {
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
     }
-    })
+    })*/
 /*async onCall(json) {
     let { from } = json[2][0][1]
     let users = global.db.data.users
@@ -919,8 +958,8 @@ conn.ws.on('CB:call', async (json) => {
 
 global.dfail = (type, m, conn) => {
     let msg = {
-        rowner: 'Perintah ini hanya dapat digunakan oleh _*Orang Ganteng*_',
-        owner: 'Perintah ini hanya dapat digunakan oleh _*Orang Ganteng*_!',
+        rowner: 'Perintah ini hanya dapat digunakan oleh _*OWWNER!1!1!*_',
+        owner: 'Perintah ini hanya dapat digunakan oleh _*Owner Bot*_!',
         mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
         premium: '*Premium*\n1 Months *IDR 10000*\n1 Years *IDR 90000*\n\nHubungi *owner* kami..', 
         banned: 'Perintah ini hanya untuk pengguna yang terbanned..',
