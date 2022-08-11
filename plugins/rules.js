@@ -7,10 +7,15 @@ let handler = async m => m.reply(`
 *MELANGGAR?* ( *BANED PERMANEN* )
 
 Donasi
- • Dana/OVO/Pulsa [Smartfren]
- - 0882009085754
- • Saweria
- - https://saweria.co/Mochraihans
+  - E-money
+  • 0882009085754 ( Dana/OVO/Gopay )
+
+  - PULSA
+  • 0882009085754 ( Smartfren )
+  • 085851642307 ( IM3 )
+
+  - Saweria
+  • https://saweria.co/Mochraihans
 
 `.trim()) // Tambah sendiri kalo mau
 handler.help = ['rules']
