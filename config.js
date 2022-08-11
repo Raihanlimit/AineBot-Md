@@ -62,6 +62,8 @@ global.packname = sticker_name
 global.author = sticker_author
 global.wm = '© WhatsApp Bot'
 
+Intervalmsg = 1800 //detik
+
 global.multiplier = 1000 // The higher, The harder levelup
 
 global.rpg = {
