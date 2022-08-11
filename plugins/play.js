@@ -36,7 +36,7 @@ _*Please wait while processing..*_
 let _thumb = {}
 try { if (isVideo) _thumb = { thumbnail: await (await fetch(thumb)).buffer() } }
 catch (e) { }
-if (!isLimit) conn.sendFile(m.chat, dl_link, (title) + '.mp3', '', m, `
+if (!isLimit) conn.sendFile(m.chat, dl_link, (title) + '.mp3', '', m, '
 *Title:* ${title}
 *Filesize:* ${filesizeF}
 *Source:* ${vid.url}
