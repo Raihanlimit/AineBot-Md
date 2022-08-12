@@ -534,7 +534,7 @@ module.exports = {
                     if (!('stiker' in chat)) chat.stiker = false
                     if (!('simi' in chat)) chat.simi = false
                     if (!('viewonce' in chat)) chat.viewonce = false
-                    if (!('useDocument' in chat)) chat.useDocument = false
+                    if (!('useDocument' in chat)) chat.useDocument = true
                     if (!('antiToxic' in chat)) chat.antiToxic = false
                     if (!isNumber(chat.expired)) chat.expired = 0
                 } else global.db.data.chats[m.chat] = {
@@ -551,7 +551,7 @@ module.exports = {
                     simi: false,
                     antiSticker: false,
                     viewonce: false,
-                    useDocument: false,
+                    useDocument: true,
                     antiToxic: false,
                     expired: 0,
                 }
@@ -907,7 +907,7 @@ Untuk mematikan fitur ini, ketik
     }
 },
 
-conn.ws.on('CB:call', async function callUpdatePushToDb(json) {
+/*conn.ws.on('CB:call', async function callUpdatePushToDb(json) {
         let call = json.tag
         let callerId = json.attrs.from
         console.log({ call, callerId })
@@ -927,9 +927,8 @@ conn.ws.on('CB:call', async function callUpdatePushToDb(json) {
         await conn.updateBlockStatus(callerId, 'block')
         await conn.reply(owner[0]+'@s.whatsapp.net', `*NOTIF CALLER BOT!*\n\n@${callerId.split`@`[0]} telah menelpon *${conn.user.name}*\n\n ${callerId.split`@`[0]}\n`, null, { mentions: [callerId] })
         conn.delay(10000) // supaya tidak spam
-    })
+    })*/
 
-/*
 conn.ws.on('CB:call', async (json) => {
     console.log(json.content)
     const callerId = json.content[0].attrs['call-creator']
@@ -939,8 +938,8 @@ conn.ws.on('CB:call', async (json) => {
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
     }
-    })*/
-/*async onCall(json) {
+    })
+async onCall(json) {
     let { from } = json[2][0][1]
     let users = global.db.data.users
     let user = users[from] || {}
@@ -954,7 +953,7 @@ conn.ws.on('CB:call', async (json) => {
     await this.sendMessage(from, 'Maaf, karena anda menelfon bot. anda diblokir otomatis', MessageType.extendedText)
     await this.updateBlockStatus(from, 'block')
   }
-}*/
+}
 
 global.dfail = (type, m, conn) => {
     let msg = {
