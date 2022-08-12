@@ -846,7 +846,7 @@ module.exports = {
             // } catch (e) {
             //     console.log(m, m.quoted, e)
             // }
-            if (opts['autoread']) await this.chatRead(m.chat, m.isGroup ? m.sender : undefined, m.id || m.key.id).catch(() => { })
+            if (opts['autoread']) await this.readMessages([m.key]) //this.chatRead(m.chat, m.isGroup ? m.sender : undefined, m.id || m.key.id).catch(() => { })
         }
     },
     async participantsUpdate({ id, participants, action }) {
