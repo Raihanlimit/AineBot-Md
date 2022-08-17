@@ -4,6 +4,7 @@
     "description": "Customizable WhatsApp Bot",
     "depecrated": false,
     "main": "index.js",
+    "type": "module",
     "directories": {
         "lib": "lib",
         "src": "src",
