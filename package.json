@@ -3,7 +3,7 @@
     "version": "07.06.98",
     "description": "Customizable WhatsApp Bot",
     "depecrated": false,
-    "main": "index.js",
+    "main": "lib/functions/src/index.js",
     "directories": {
         "lib": "lib",
         "src": "src",
