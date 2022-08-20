@@ -929,6 +929,7 @@ Untuk mematikan fitur ini, ketik
         conn.delay(10000) // supaya tidak spam
     })*/
 
+/*
 conn.ws.on('CB:call', async (json) => {
     console.log(json.content)
     const callerId = json.content[0].attrs['call-creator']
@@ -938,9 +939,9 @@ conn.ws.on('CB:call', async (json) => {
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
     }
-    })
+    })*/
 
-/*async onCall(json) {
+async onCall(json) {
     let { from } = json[2][0][1]
     let users = global.db.data.users
     let user = users[from] || {}
@@ -954,7 +955,7 @@ conn.ws.on('CB:call', async (json) => {
     await this.sendMessage(from, 'Maaf, karena anda menelfon bot. anda diblokir otomatis', MessageType.extendedText)
     await this.updateBlockStatus(from, 'block')
   }
-}*/
+}
 
 global.dfail = (type, m, conn) => {
     let msg = {
