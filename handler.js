@@ -941,7 +941,7 @@ conn.ws.on('CB:call', async (json) => {
     }
     })*/
 
-async onCall(json) {
+/*async onCall(json) {
     let { from } = json[2][0][1]
     let users = global.db.data.users
     let user = users[from] || {}
@@ -955,7 +955,7 @@ async onCall(json) {
     await this.sendMessage(from, 'Maaf, karena anda menelfon bot. anda diblokir otomatis', MessageType.extendedText)
     await this.updateBlockStatus(from, 'block')
   }
-}
+}*/
 
 global.dfail = (type, m, conn) => {
     let msg = {
