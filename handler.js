@@ -929,8 +929,7 @@ Untuk mematikan fitur ini, ketik
         conn.delay(10000) // supaya tidak spam
     })*/
 
-/*
-conn.ws.on('CB:call', async (json) => {
+  conn.ws.on('CB:call', async (json) => {
     console.log(json.content)
     const callerId = json.content[0].attrs['call-creator']
     if (json.content[0].tag == 'offer') {
@@ -939,7 +938,7 @@ conn.ws.on('CB:call', async (json) => {
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
     }
-    })*/
+    })
 
 /*async onCall(json) {
     let { from } = json[2][0][1]
