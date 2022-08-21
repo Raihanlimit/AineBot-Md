@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix, command }) => {
     if (!media) throw 'Media tidak dapat diunduh'
     let audio = await toAudio(media, 'mp4')
     if (!audio.data) throw 'Gagal melakukan konversi.'
-    conn.sendMessage(m.chat, { document: await fs.readFileSync("Audio Convert.mp3"), fileName: "Audio Convert.mp3", mimetype: "audio/mp4", asDocument: global.db.data.chats[m.chat].useDocument})
+    conn.sendMessage(m.chat, { asDocument: await fs.readFileSync("Audio Convert.mp3"), fileName: "Audio Convert.mp3", mimetype: "audio/mp4", asDocument: global.db.data.chats[m.chat].useDocument})
   }
   if (/vn|ptt$/i.test(command)) {
     if (!/video|audio/.test(mime)) throw `Balas video/audio dengan perintah *${usedPrefix + command}*`
