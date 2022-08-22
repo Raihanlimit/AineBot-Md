@@ -1,4 +1,4 @@
-let { youtubeSearch } from '@bochilteam/scraper'
+let { youtubeSearch } = require('@bochilteam/scraper')
 let handler = async (m, { conn, command, text, usedPrefix }) => {
   if (!text) throw `Use example ${usedPrefix}${command} Minecraft`
   let vid = (await youtubeSearch(text)).video[0]
