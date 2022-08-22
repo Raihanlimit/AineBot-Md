@@ -21,20 +21,30 @@ let handler = async (m, { conn, args, isPrems, isOwner }) => {
   if (!link) throw lastError
   // let { dl_link, thumb, title, filesize, filesizeF } = await yta(args[0], servers.includes(server) ? server : servers[0])
   let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < audio.fileSize
-  if (!isY) conn.sendFile(m.chat, thumbnail, 'thumbnail.jpg', `
-📌*Title:* ${title}
-🗎 *Filesize:* ${audio.fileSizeH}
-*${isLimit ? 'Pakai ' : ''}Link:* ${link}
-`.trim(), m)
-  if (!isLimit) conn.sendFile(m.chat, link, title + '.mp3', `
-📌 *Title:* ${title}
-🗎 *Filesize:* ${audio.fileSizeH}
+  if (!isY) conn.sendFile(m.chat, dl_link, title + '.mp3', `
+┏┉━━━━━━━━━━━❏
+┆ *YOUTUBE MP3*
+├┈┈┈┈┈┈┈┈┈┈┈
+┆• *Judul:* ${title}
+│• *Type:* MP3
+┆• *📥 Ukuran File:* ${filesizeF}
+└❏
 `.trim(), m, null, {
-    asDocument: chat.useDocument
+    asDocument: chat.useDocument, mimetype: 'audio/mp4', ptt: true, contextInfo: {
+        externalAdReply: {
+            title: '▶︎ ━━━━━━━•────────────────── ', 
+            body: 'Now Playing...',
+            description: 'Now Playing...',
+            mediaType: 2,
+          thumbnail: await (await fetch(thumb)).buffer(),
+         mediaUrl: `https://youtube.com/watch?v=uIedYGN3NQQ`
+        }
+     }
   })
 }
 handler.help = ['mp3', 'a'].map(v => 'yt' + v + ` <url> <without message>`)
 handler.tags = ['downloader']
 handler.command = /^yt(a|mp3)$/i
+handler.limit = true
 handler.exp = 0
 module.exports = handler
