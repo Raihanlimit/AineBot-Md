@@ -1,3 +1,4 @@
+/*
 let { instagramdlv3, instagramdlv4 } = require('@bochilteam/scraper')
 let handler = async (m, { conn, args, usedPrefix, command }) => {
 
@@ -18,52 +19,43 @@ module.exports = handler
 async function shortlink(url) {
 isurl = /https?:\/\//.test(url)
 return isurl ? (await require('axios').get('https://tinyurl.com/api-create.php?url='+encodeURIComponent(url))).data : ''
-}
+}*/
 
 
-/*const { instagramdl } = require('@bochilteam/scraper')
+const { igdl } = require('../lib/scrape')
+const { delay } = require("@adiwajshing/baileys")
+let bo = require("@bochilteam/scraper")
 let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args[0]) throw `*Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/BmjK1KOD_UG/?utm_medium=copy_link`
-  if (!args[0].match(/https:\/\/www.instagram.com\/(p|reel|tv)/gi)) throw `*Link salah! Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/CQU21b0JKwq/`
 
-instagramdl(args[0]).then(async res => {
-    let instagramdl = JSON.stringify(res)
-    let json = JSON.parse(instagramdl)
-    for (let { url, type } of json) {
-      await delay(1500)
-      conn.sendFile(m.chat, url, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '© *WhatsApp Bot*', m, { thumbnail: Buffer.alloc(0) })
+  if (!args[0]) throw `Pengunaan:\n${usedPrefix + command} <url>\n\nContoh:\n${usedPrefix + command} https://www.instagram.com/p/CQU21b0JKwq/`
+  if (!args[0].match(/https:\/\/www.instagram.com\/.*(p|reel|tv)/gi)) throw `url salah, perintah ini untuk mengunduh post/reel/tv`
+
+ /* igdl(args[0]).then(async res => {
+    let igdl = JSON.stringify(res)
+    let json = JSON.parse(igdl)
+    await m.reply(global.wait)
+    for (let { downloadUrl, type } of json) {
+    	await delay(2000)
+      conn.sendFile(m.chat, downloadUrl, 'ig' + (type == 'image' ? '.jpg' : '.mp4'), '*nih*', m)
     }
-  })
+  }) */
+  try {
+ let a = await bo.instagramdlv2(args[0])
+//let b = a[0].url.split("snapsave.app")[1]
+await conn.sendFile(m.chat, a[0].url.split("snapsave.app")[1] ,null, "ini video nya", m)
+} catch {
+	try {
+	let a = await bo.instagramdlv3(args[0])
+//let b = a[0].url.split("snapsave.app")[1]
+await conn.sendFile(m.chat, a[0].url ,null, "ini video nya", m)
+} catch { throw "coba gunakan perintah .savefrom link"
+}
+}
 }
 handler.help = ['ig'].map(v => v + ' <url>')
+handler.alias = ["instagram", "igdl", "instagramdl"]
 handler.tags = ['downloader']
-handler.command = /^(ig|igdl|instagram)$/i
-handler.limit = true
-handler.premium = false
+//handler.command = /^(ig|instagram)$/i
+handler.command = /^(ig(dl)?|instagram(dl)?)$/i
 
 module.exports = handler
-
-const delay = time => new Promise(res => setTimeout(res, time))*/
-
-
-/*
-let fetch = require('node-fetch')
-let handler = async (m, { conn, args, usedPrefix, command }) => {
-  if (!args[0]) throw `*Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/BmjK1KOD_UG/?utm_medium=copy_link`
-  if (!args[0].match(/https:\/\/www.instagram.com\/(p|reel|tv)/gi)) throw `*Link salah! Perintah ini untuk mengunduh postingan ig/reel/tv, bukan untuk highlight/story!*\n\ncontoh:\n${usedPrefix + command} https://www.instagram.com/p/CQU21b0JKwq/`
-  let res = await fetch(`https://x-restapi.herokuapp.com/api/ig-dl?url=${args[0]}&apikey=BETA`)
-  let json = await res.json()
-   if (!json.status) throw json
-  m.reply('Sedang diproses...')
-   conn.sendFile(m.chat, json.linkdownload, 'ig.mp4', '*© Aine*', m, { thumbnail: Buffer.alloc(0) })
-}
-
-handler.help = ['ig'].map(v => v + ' <url>')
-handler.tags = ['downloader']
-handler.command = /^(ig|igdl|instagram)$/i
-handler.limit = true
-handler.group = true
-
-module.exports = handler
-
-const delay = time => new Promise(res => setTimeout(res, time))*/
