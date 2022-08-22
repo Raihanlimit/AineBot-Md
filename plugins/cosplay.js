@@ -1,12 +1,14 @@
 // wahai para para weaboo🗿
 let fetch = require('node-fetch')
-let handler = async (m, { conn }) => {
-  conn.sendFile(m.chat, global.API('adiisus', '/api/randomimage/cosplay'), 'cosplay.jpg', '_*Done*_', m)
+
+let handler = async (m, { conn, command }) => {
+	let url = 'https://kannxapi.herokuapp.com/api/randomimage/cosplay'
+	conn.sendButton(m.chat, 'Watashiwa Anime Desu (≧ω≦)', wm, await(await fetch(url)).buffer(), [['Next',`.${command}`]],m)
 }
+handler.command = /^(cosplay)$/i
+handler.tags = ['anime']
 handler.help = ['cosplay']
-handler.tags = ['internet']
+handler.premium = false
 handler.limit = true
 
-handler.command = /^(cosplay)$/i
-
-module.exports = handler
+export default handler
