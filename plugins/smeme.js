@@ -1,7 +1,7 @@
 const { sticker } = require('../lib/sticker.js')
-const uploadFile require('../lib/uploadFile.js')
-const uploadImage require('../lib/uploadImage.js')
-const { webp2png } require('../lib/webp2mp4.js')
+const uploadFile = require('../lib/uploadFile.js')
+const uploadImage = require('../lib/uploadImage.js')
+const { webp2png } = require('../lib/webp2mp4.js')
 
 let handler = async (m, { conn, text, usedPrefix, command }) => {
 let stiker = false
