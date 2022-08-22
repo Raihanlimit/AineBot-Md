@@ -1,4 +1,4 @@
-import { facebookdl, facebookdlv2 } from '@bochilteam/scraper'
+const { facebookdl, facebookdlv2 } = require('@bochilteam/scraper')
 let handler = async (m, { conn, args, usedPrefix, command }) => {
     if (!args[0]) throw `Use example ${usedPrefix}${command} https://fb.watch/azFEBmFRcy/`
     const { result } = await facebookdl(args[0]).catch(async _ => await facebookdlv2(args[0]))
