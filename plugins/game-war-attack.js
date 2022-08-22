@@ -365,7 +365,7 @@ handler.help = ['attack','atk']
 handler.tags = ['game']
 handler.command = /^(attack|atk)$/i
 handler.group = true
-export default handler
+module.exports = handler
 
 function getRandom(min,max){
   min = Math.ceil(min)
