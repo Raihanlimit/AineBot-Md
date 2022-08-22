@@ -5,7 +5,6 @@ const db = require('../lib/database.js')
 let limit = 100
 let handler = async (m, { conn, args, isPrems, isOwner }) => {
   if (!args || !args[0]) throw 'Uhm... urlnya mana?'
-  let chat = db.data.chats[m.chat]
   const isY = /y(es)/gi.test(args[1])
   const { thumbnail, audio: _audio, title } = await youtubedl(args[0]).catch(async _ => await youtubedlv2(args[0])).catch(async _ => await youtubedlv3(args[0]))
   const limitedSize = (isPrems || isOwner ? 2000 : limit) * 1024
