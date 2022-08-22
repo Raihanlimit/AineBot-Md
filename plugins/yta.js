@@ -35,7 +35,7 @@ let handler = async (m, { conn, args, isPrems, isOwner }) => {
   if (!isLimit) await conn.sendFile(m.chat, source, title + '.mp3', `
 *Title:* ${title}
 *🗎 Filesize:* ${audio.fileSizeH}
-`.trim(), m, null, {
+`.trim(), m, false, {
     asDocument: chat.useDocument
   })
 }
