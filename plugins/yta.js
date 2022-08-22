@@ -1,5 +1,5 @@
 let fetch = require('node-fetch')
-const { youtubedl, youtubedlv2 } = require('@bochilteam/scraper')
+const { youtubedl, youtubedlv2, youtubedlv3 } = require('@bochilteam/scraper')
 import db from '../lib/database.js'
 
 let limit = 100
