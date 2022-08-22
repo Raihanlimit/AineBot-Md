@@ -3,7 +3,7 @@ const cheerio = require('cheerio')
 const { lookup } = require('mime-types')
 const { extract } = require('zs-extract')
 
-export async function before(m) {
+let handler = async before(m) {
 	let chat = db.data.chats[m.chat] || {}
 	if (!chat.lastAnime) chat.lastAnime = []
 	if (chat && chat.updateAnime) {
