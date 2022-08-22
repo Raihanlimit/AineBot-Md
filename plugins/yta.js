@@ -1,4 +1,4 @@
-import fetch from 'node-fetch'
+let fetch = require('node-fetch')
 import { youtubedl, youtubedlv2, youtubedlv3 } from '@bochilteam/scraper'
 import db from '../lib/database.js'
 
