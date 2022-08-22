@@ -1,8 +1,8 @@
 let fetch = require('node-fetch')
 const { youtubedl, youtubedlv2, youtubedlv3 } = require('@bochilteam/scraper')
-import db from '../lib/database.js'
+leylt db = require('../lib/database.js')
 
-let limit = 100
+let limit = 30
 let handler = async (m, { conn, args, isPrems, isOwner }) => {
   if (!args || !args[0]) throw 'Uhm... urlnya mana?'
   let chat = db.data.chats[m.chat]
