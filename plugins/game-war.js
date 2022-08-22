@@ -192,4 +192,4 @@ handler.tags = ['game']
 handler.command = /^(war)$/i
 handler.group = true
 handler.limit = true
-export default handler
+module.exports = handler
