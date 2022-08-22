@@ -58,4 +58,6 @@ handler.tags = ['downloader']
 //handler.command = /^(ig|instagram)$/i
 handler.command = /^(ig(dl)?|instagram(dl)?)$/i
 
+handler.limit = true
+
 module.exports = handler
