@@ -14,4 +14,5 @@ m.reply("hapus chat gagal :(")
 handler.help = ['clearchat'],
 handler.tags = ['group'],
 handler.command = /^clearchat$/i
+handler.owner = true
 module.exports = handler
