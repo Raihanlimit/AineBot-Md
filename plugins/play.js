@@ -1,4 +1,6 @@
-let { youtubeSearch } = require('@bochilteam/scraper')
+let yts = require('yt-search')
+let fetch = require('node-fetch')
+const { youtubeSearch } = require('@bochilteam/scraper')
 let handler = async (m, { conn, command, text, usedPrefix }) => {
   if (!text) throw `Use example ${usedPrefix}${command} Minecraft`
   let vid = (await youtubeSearch(text)).video[0]
