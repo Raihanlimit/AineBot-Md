@@ -1,6 +1,6 @@
 let fetch = require('node-fetch')
-const { youtubedl, youtubedlv2, youtubedlv3 } = require ('@bochilteam/scraper')
-const db = require ('../lib/database.js')
+const { youtubedl, youtubedlv2, youtubedlv3 } = require('@bochilteam/scraper')
+const db = require('../lib/database.js')
 
 let limit = 100
 let handler = async (m, { conn, args, isPrems, isOwner }) => {
