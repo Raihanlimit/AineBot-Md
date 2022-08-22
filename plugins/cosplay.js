@@ -11,4 +11,4 @@ handler.help = ['cosplay']
 handler.premium = false
 handler.limit = true
 
-export default handler
+module.exports = handler
