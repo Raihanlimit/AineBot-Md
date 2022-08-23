@@ -23,11 +23,11 @@ let handler = async (m, { conn, usedPrefix, args, command }) => {
     if(m.sender == conn.war[m.chat][0].user){
       if (args[1] != "undefined" && !isNaN(args[1])){
         args[1] = parseInt(args[1])
-        if (args[1] < 1000000) return m.reply('*Minimal 1.000.000 Money*')
+        if (args[1] < 1000000) return m.reply('*Minimal 100.000 Money*')
         conn.war2[m.chat].money = args[1]
         return m.reply("*Berhasil menetapkan modal perang sebesar Rp. " + Number(args[1]).toLocaleString() + "*")
       }else {
-        return m.reply("*Masukkan modal taruhan perang berupa angka (Tidak boleh menggunakan titik)*\n\n.war money 100000000")
+        return m.reply("*Masukkan modal taruhan perang berupa angka (Tidak boleh menggunakan titik)*\n\n.war money 100000")
       }
     }else {
       return conn.reply(m.chat,`*Hanya @${conn.war[m.chat][0].user.split('@')[0]} sebagai pembuat room yang bisa mengganti modal awal perang*`,m, {contextInfo : {mentionedJid : [conn.war[m.chat][0].user]}})
