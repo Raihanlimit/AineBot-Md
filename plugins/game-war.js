@@ -23,7 +23,7 @@ let handler = async (m, { conn, usedPrefix, args, command }) => {
     if(m.sender == conn.war[m.chat][0].user){
       if (args[1] != "undefined" && !isNaN(args[1])){
         args[1] = parseInt(args[1])
-        if (args[1] < 1000000) return m.reply('*Minimal 100.000 Money*')
+        if (args[1] < 1000000) return m.reply('*Minimal 100000 Money*')
         conn.war2[m.chat].money = args[1]
         return m.reply("*Berhasil menetapkan modal perang sebesar Rp. " + Number(args[1]).toLocaleString() + "*")
       }else {
@@ -37,7 +37,7 @@ let handler = async (m, { conn, usedPrefix, args, command }) => {
   // JOIN
   if (args[0] == "join"){
     
-    if (global.db.data.users[m.sender].money < 10000) return m.reply("*Money kamu minimal 10.000 untuk bermain game ini.*")
+    if (global.db.data.users[m.sender].money < 10000) return m.reply("*Money kamu minimal 10000 untuk bermain game ini.*")
     // FIRST PLAYER
     if (!(m.chat in conn.war)) {
       conn.war2[m.chat] = {"war" : false, "turn" : 0, "time" : 0, "money" : 0}
@@ -69,7 +69,7 @@ let handler = async (m, { conn, usedPrefix, args, command }) => {
       // JOIN MILIH TIM
       if (args[1]){
         if (args[1].toLowerCase() == "a"){
-          if (conn.war2[m.chat].money == 0) return conn.reply(m.chat,`*Tolong @${conn.war[m.chat][0].user.split('@')[0]} tetapkan modal awal perang (minimal 1.000.000 Money)*\n\n.war money 1000000`,m, {contextInfo : {mentionedJid : [conn.war[m.chat][0].user]}})
+          if (conn.war2[m.chat].money == 0) return conn.reply(m.chat,`*Tolong @${conn.war[m.chat][0].user.split('@')[0]} tetapkan modal awal perang (minimal 100000 Money)*\n\n.war money 100000`,m, {contextInfo : {mentionedJid : [conn.war[m.chat][0].user]}})
           return m.reply('a')
           if (global.db.data.users[m.sender].money < conn.war2[m.chat].money) return m.reply(`*Money kamu minimal Rp. ${conn.war2[m.chat].money.toLocaleString()} untuk bermain game ini.*`)
           for (let i = 1 ; i < 5 ; i++) {
@@ -86,7 +86,7 @@ let handler = async (m, { conn, usedPrefix, args, command }) => {
             }
           } 
         }else if (args[1].toLowerCase() == "b"){
-          if (conn.war2[m.chat].money == 0) return conn.reply(m.chat,`*Tolong @${conn.war[m.chat][0].user.split('@')[0]} tetapkan modal awal perang (minimal 1000000 Money)*\n\n.war money 1000000`,m, {contextInfo : {mentionedJid : [conn.war[m.chat][0].user]}})
+          if (conn.war2[m.chat].money == 0) return conn.reply(m.chat,`*Tolong @${conn.war[m.chat][0].user.split('@')[0]} tetapkan modal awal perang (minimal 100000 Money)*\n\n.war money 100000`,m, {contextInfo : {mentionedJid : [conn.war[m.chat][0].user]}})
           if (global.db.data.users[m.sender].money < conn.war2[m.chat].money) return m.reply(`*Uang kamu minimal Rp. ${conn.war2[m.chat].money.toLocaleString()} untuk bermain game ini.*`)
           for (let i = 5 ; i < 10 ; i++) {
             if (conn.war[m.chat][i].user == ""){
