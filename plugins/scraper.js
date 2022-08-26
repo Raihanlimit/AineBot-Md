@@ -1,5 +1,5 @@
-import cheerio from 'cheerio'
-import fetch from 'node-fetch'
+let cheerio = require('cheerio')
+let fetch = require('node-fetch')
 
 async function sekaikomikDl(url) {
 	let res = await fetch(url)
