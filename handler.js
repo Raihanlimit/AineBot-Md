@@ -841,11 +841,11 @@ module.exports = {
                 }
             }
 
-            // try {
+             try {
                  require('./lib/print')(m, this)
-            // } catch (e) {
-            //     console.log(m, m.quoted, e)
-            // }
+             } catch (e) {
+                 console.log(m, m.quoted, e)
+             }
             if (opts['autoread']) await this.readMessages([m.key]) //this.chatRead(m.chat, m.isGroup ? m.sender : undefined, m.id || m.key.id).catch(() => { })
         }
     },
