@@ -842,7 +842,7 @@ module.exports = {
             }
 
             // try {
-            //     require('./lib/print')(m, this)
+                 require('./lib/print')(m, this)
             // } catch (e) {
             //     console.log(m, m.quoted, e)
             // }
