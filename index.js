@@ -285,6 +285,7 @@ function start(file) {
   p.on('exit', (_, code) => {
     isRunning = false
     console.error('Exited with code:', code)
+    start('main.js') //restart when error
     if (code === 0) return
     fs.watchFile(args[0], () => {
       fs.unwatchFile(args[0])
@@ -298,5 +299,3 @@ function start(file) {
     })
   // console.log(p)
 }
-
-start('main.js')
