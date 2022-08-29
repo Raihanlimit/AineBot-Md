@@ -11,7 +11,7 @@ let charaingfo = `💬 *Name:* ${name} ${name_kanji}
 🔗 *Link*: ${url}
 👤 *About*: ${about}`
 
-  conn.sendHydrated(m.chat, url, 'image_url', charaingfo, m)
+  conn.sendHydrated(m.chat, `*${htki} ᴄʜᴀʀᴀ ɪɴꜰᴏ ${htka}*`, charaingfo, image_url, url, '🌎 ʟ ɪ ɴ ᴋ', null, null, [[null,null],[null,null],[null,null]], m)
   // fix kan gus, ga bisa send gambar, malah jadi .bin file
 }
 handler.help = ['character <nama>']
