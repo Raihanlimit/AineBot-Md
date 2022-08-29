@@ -11,7 +11,7 @@ let charaingfo = `💬 *Name:* ${name} ${name_kanji}
 🔗 *Link*: ${url}
 👤 *About*: ${about}`
 
-  conn.sendFile(m.chat, url, 'gimage', charaingfo, m)
+  conn.sendFile(m.chat, url, 'image_url', charaingfo, m)
   // fix kan gus, ga bisa send gambar, malah jadi .bin file
 }
 handler.help = ['character <nama>']
