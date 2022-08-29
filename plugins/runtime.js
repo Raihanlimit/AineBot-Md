@@ -8,20 +8,9 @@ let handler = async (m, { conn, args, command }) => {
         setTimeout(resolve, 1000)
       }) * 1000
     }
-    let muptime = clockString(_muptime)
- conn.reply(m.chat, `${htki} *R U N T I M E* ${htka}\n${muptime}\n`, m, {
-contextInfo: { externalAdReply :{
-                        mediaUrl: '',
-                        mediaType: 2,
-                        description: 'anu',
-                        title: bottime,
-                        body: wm2,          previewType: 0,
-                        thumbnail: fs.readFileSync("./thumbnail.jpg"),
-                        sourceUrl: sgc
-                      }}
-})
+    let teks = `\n\t\t*「 \t ${clockString(process.uptime())} \t」*\n`
+conn.sendMessage(m.chat, {text: teks, jpegThumbnail:  global.thumb}, { quoted: m} )
 }
-
 
 handler.help = ['runtime']
 handler.tags = ['info']
