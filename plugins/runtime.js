@@ -1,13 +1,7 @@
 let fs = require('fs')
 let handler = async (m, { conn, args, command }) => {
 	let _muptime
-    if (process.send) {
-      process.send('uptime')
-      _muptime = await new Promise(resolve => {
-        process.once('message', resolve)
-        setTimeout(resolve, 1000)
-      }) * 1000
-    }
+
     let teks = `\n\t\t*「 \t ${clockString(process.uptime())} \t」*\n`
 conn.sendMessage(m.chat, {text: teks, jpegThumbnail:  global.thumb}, { quoted: m} )
 }
