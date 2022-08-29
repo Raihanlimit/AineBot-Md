@@ -1,14 +1,37 @@
+let fs = require('fs')
 let handler = async (m, { conn, args, command }) => {
-
-let teks = `\n\t\t*「 \t ${clockString(process.uptime())} \t」*\n`
-conn.sendMessage(m.chat, {text: teks, jpegThumbnail:  global.thumb}, { quoted: m} )
+	let _muptime
+    if (process.send) {
+      process.send('uptime')
+      _muptime = await new Promise(resolve => {
+        process.once('message', resolve)
+        setTimeout(resolve, 1000)
+      }) * 1000
+    }
+    let muptime = clockString(_muptime)
+ conn.reply(m.chat, `${htki} *R U N T I M E* ${htka}\n${muptime}\n`, m, {
+contextInfo: { externalAdReply :{
+                        mediaUrl: '',
+                        mediaType: 2,
+                        description: 'anu',
+                        title: bottime,
+                        body: wm2,          previewType: 0,
+                        thumbnail: fs.readFileSync("./thumbnail.jpg"),
+                        sourceUrl: sgc
+                      }}
+})
 }
 
 
+handler.help = ['runtime']
+handler.tags = ['info']
 handler.command = /^(up|run)time$/i
+module.exports = handler
 
 function clockString(ms) {
-	let h = isNaN(ms) ? '--' : Math.floor(ms % (3600 * 24) / 3600)
-	let m = isNaN(ms) ? '--' : Math.floor(ms % 3600 / 60)
-	let s = isNaN(ms) ? '--' : Math.floor(ms % 60)
-	return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
+  let d = isNaN(ms) ? '--' : Math.floor(ms / 86400000)
+  let h = isNaN(ms) ? '--' : Math.floor(ms / 3600000) % 24
+  let m = isNaN(ms) ? '--' : Math.floor(ms / 60000) % 60
+  let s = isNaN(ms) ? '--' : Math.floor(ms / 1000) % 60
+  return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
+}
