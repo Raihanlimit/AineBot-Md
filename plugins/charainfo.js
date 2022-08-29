@@ -1,4 +1,8 @@
 let fetch = require('node-fetch')
+let { promisify } = require('util')
+let _gis = require('g-i-s')
+let gis = promisify(_gis)
+
 let handler = async(m, { conn, text }) => {
   if (!text) throw `Masukkan query!`
   let res = await fetch(global.API('https://api.jikan.moe', '/v4/characters', { q: text }))
