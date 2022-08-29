@@ -1,4 +1,4 @@
-export default function handler(m) {
+let handler = async (m, { conn, args, command }) => {
 
 let teks = `\n\t\t*「 \t ${clockString(process.uptime())} \t」*\n`
 conn.sendMessage(m.chat, {text: teks, jpegThumbnail:  global.thumb}, { quoted: m} )
