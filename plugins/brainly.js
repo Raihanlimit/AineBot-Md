@@ -37,7 +37,7 @@ function formatTags(str) {
     let b = ""
     switch (tag) {
       case "p"
-        a += "\n"
+        a += '\n'
         break
       case "i"
         b = "_"
