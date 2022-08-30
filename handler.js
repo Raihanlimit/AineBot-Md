@@ -8,7 +8,7 @@ const delay = ms => isNumber(ms) && new Promise(resolve => setTimeout(resolve, m
 
 module.exports = {
     async handler(chatUpdate) {
-        if (db.data == null) await loadDatabase()
+        if (global.db.data == null) await loadDatabase()
         this.msgqueque = this.msgqueque || []
         // console.log(chatUpdate)
         if (!chatUpdate) return
@@ -17,10 +17,6 @@ module.exports = {
         let m = chatUpdate.messages[chatUpdate.messages.length - 1]
         if (!m) return
         // console.log(m)
-        const Tnow = (new Date()/1000).toFixed(0)
-        const seli = Tnow - m.messageTimestamp
-        if (seli > global.Intervalmsg) return console.log(new ReferenceError(`Pesan ${Intervalmsg} detik yang lalu diabaikan agar tidak nyepam`))
-
         try {
             m = simple.smsg(this, m) || m
             if (!m) return
@@ -28,8 +24,8 @@ module.exports = {
             m.exp = 0
             m.limit = false
             try {
-                let user = db.data.users[m.sender]
-                if (typeof user !== 'object') db.data.users[m.sender] = {}
+                let user = global.db.data.users[m.sender]
+                if (typeof user !== 'object') global.db.data.users[m.sender] = {}
                 if (user) {
                     if (!isNumber(user.exp)) user.exp = 0
                     if (!isNumber(user.limit)) user.limit = 1000
@@ -48,7 +44,6 @@ module.exports = {
                     if (!('pasangan' in user)) user.pasangan = ''
                     if (!('banned' in user)) user.banned = false
                     if (!('premium' in user)) user.premium = false
-                    if (!('created' in user)) user.created = false
                     if (!isNumber(user.premiumDate)) user.premiumDate = 0
                     if (!isNumber(user.bannedDate)) user.bannedDate = 0
                     if (!isNumber(user.warn)) user.warn = 0
@@ -64,7 +59,6 @@ module.exports = {
                     if (!isNumber(user.healtmonster)) user.healtmonster = 0
                     if (!isNumber(user.pc)) user.pc = 0
                     if (!isNumber(user.spammer)) user.spammer = 0
-                    if (!isNumber(user.limitspam)) user.limitspam = 0
                     if (!isNumber(user.expg)) user.expg = 0
                     if (!isNumber(user.trash)) user.trash = 0
                     if (!isNumber(user.sampah)) user.sampah = 0
@@ -276,18 +270,14 @@ module.exports = {
                     if (!isNumber(user.lastmonthly)) user.lastmonthly = 0
                     if (!isNumber(user.lastmulung)) user.lastmulung = 0
                     if (!isNumber(user.lastdagang)) user.lastdagang = 0
-                    if (!isNumber(user.lastbisnis)) user.lastbisnis = 0
                     if (!isNumber(user.lastnebang)) user.lastnebang = 0
                     if (!isNumber(user.lastberkebon))user.lastberkebon = 0
                     if (!isNumber(user.lastadventure)) user.lastadventure = 0
-                    if (!isNumber(user.lastlawan)) user.lastlawan = 0
-                    if (!isNumber(user.lastlatih)) user.lastlatih = 0
-                } else db.data.users[m.sender] = {
+                } else global.db.data.users[m.sender] = {
                     exp: 0,
                     limit: 1000,
                     joinlimit: 1,
                     spammer: 0,
-                    limitspam: 0,
                     money: 10000,
                     bank: 10000,
                     health: 100,
@@ -304,7 +294,6 @@ module.exports = {
                     pasangan: '',
                     banned: false,
                     premium: false,
-                    created: false,
                     warn: 0,
                     pc: 0,
                     expg: 0,
@@ -521,15 +510,12 @@ module.exports = {
                     lasteasy: 0,
                     lastmulung: 0,
                     lastdagang: 0,
-                    lastbisnis: 0,
                     lastnebang: 0,
                     lastberkebon: 0,
                     lastadventure: 0,
-                    lastlawan: 0,
-                    lastlatih: 0,
                 }
-                let chat = db.data.chats[m.chat]
-                if (typeof chat !== 'object') db.data.chats[m.chat] = {}
+                let chat = global.db.data.chats[m.chat]
+                if (typeof chat !== 'object') global.db.data.chats[m.chat] = {}
                 if (chat) {
                     if (!('isBanned' in chat)) chat.isBanned = false
                     if (!('welcome' in chat)) chat.welcome = false
@@ -542,14 +528,11 @@ module.exports = {
                     if (!('antiLink' in chat)) chat.antiLink = false 
                     if (!('antiSticker' in chat)) chat.antiSticker = false
                     if (!('stiker' in chat)) chat.stiker = false
-                    if (!('simi' in chat)) chat.simi = false
-                    if (!('mute' in chat)) chat.mute = true 
-                    if (!('download' in chat)) chat.download = false 
                     if (!('viewonce' in chat)) chat.viewonce = false
                     if (!('useDocument' in chat)) chat.useDocument = false
                     if (!('antiToxic' in chat)) chat.antiToxic = false
                     if (!isNumber(chat.expired)) chat.expired = 0
-                } else db.data.chats[m.chat] = {
+                } else global.db.data.chats[m.chat] = {
                     isBanned: false,
                     welcome: false,
                     detect: false,
@@ -560,26 +543,12 @@ module.exports = {
                     delete: true,
                     antiLink: false,
                     stiker: false,
-                    simi: false,
-                    mute: true,
-                    download: false,
                     antiSticker: false,
                     viewonce: false,
                     useDocument: false,
                     antiToxic: false,
                     expired: 0,
                 }
-                let settings = db.data.settings[this.user.jid]
-                if (typeof settings !== 'object') db.data.settings[this.user.jid] = {}
-                if (settings) {
-		            if (!'anticall' in settings) settings.anticall = true
-		            if (!'autoreset' in settings) settings.autoreset = true
-		            if (!isNumber(settings.autoresetTime)) settings.autoresetTime = (new Date() * 1) + 3600000 * 720
-		        } else db.data.settings[this.user.jid] = {
-		            anticall: true,
-		            autoreset: true,
-		            autoresetTime: (new Date() * 1) + 3600000 * 720,
-		        }
             } catch (e) {
                 console.error(e)
             }
@@ -593,9 +562,8 @@ module.exports = {
             const isROwner = [conn.decodeJid(global.conn.user.id), ...global.owner.map(([number, isCreator, isDeveloper]) => number)].map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
             const isOwner = isROwner || m.fromMe
             const isMods = isOwner || global.mods.map(v => v.replace(/[^0-9]/g, '') + '@s.whatsapp.net').includes(m.sender)
-            const isPrems = db.data.users[m.sender].premium
-            const isBans = db.data.users[m.sender].banned
-            const isCreated = db.data.users[m.sender].created
+            const isPrems = global.db.data.users[m.sender].premium
+            const isBans = global.db.data.users[m.sender].banned
 
             if (opts['queque'] && m.text && !(isMods || isPrems)) {
                 let queque = this.msgqueque, time = 1000 * 5
@@ -621,14 +589,11 @@ module.exports = {
             //     }
             // }
 
-            if (m.isBaileys) return 
-            if (m.chat.endsWith('broadcast') || m.key.remoteJid.endsWith('broadcast')) return // Supaya tidak merespon di status
-            let blockList = await conn.fetchBlocklist()
-            if (blockList?.includes(m.sender)) return
+            if (m.isBaileys) return
             m.exp += Math.ceil(Math.random() * 10)
 
             let usedPrefix
-            let _user = db.data && db.data.users && db.data.users[m.sender]
+            let _user = global.db.data && global.db.data.users && global.db.data.users[m.sender]
 
             const groupMetadata = (m.isGroup ? (conn.chats[m.chat] || {}).metadata : {}) || {}
         //    const groupMetadata = (m.isGroup ? (conn.chats[m.chat].metadata || await conn.groupMetadata(m.chat)): {}) || {}
@@ -683,7 +648,6 @@ module.exports = {
                     isBotAdmin,
                     isPrems,
                     isBans,
-                    isCreated,
                     chatUpdate,
                 })) continue
                 if (typeof plugin !== 'function') continue
@@ -708,9 +672,9 @@ module.exports = {
 
                     if (!isAccept) continue
                     m.plugin = name
-                    if (m.chat in db.data.chats || m.sender in db.data.users) {
-                        let chat = db.data.chats[m.chat]
-                        let user = db.data.users[m.sender]
+                    if (m.chat in global.db.data.chats || m.sender in global.db.data.users) {
+                        let chat = global.db.data.chats[m.chat]
+                        let user = global.db.data.users[m.sender]
                         if (name != 'unbanchat.js' && chat && chat.isBanned) return // Except this
                         if (name != 'unbanuser.js' && user && user.banned) return
                     }
@@ -738,10 +702,6 @@ module.exports = {
                         fail('banned', m, this)
                         continue
                     }
-                    if (plugin.created && !isCreated) { // Created
-                         fail('created', m, this)
-                         continue
-                    }
                     if (plugin.group && !m.isGroup) { // Group Only
                         fail('group', m, this)
                         continue
@@ -764,7 +724,7 @@ module.exports = {
                     let xp = 'exp' in plugin ? parseInt(plugin.exp) : 17 // XP Earning per command
                     if (xp > 9999999999999999999999) m.reply('Ngecit -_-') // Hehehe
                     else m.exp += xp
-                    if (!isPrems && plugin.limit && db.data.users[m.sender].limit < plugin.limit * 1) {
+                    if (!isPrems && plugin.limit && global.db.data.users[m.sender].limit < plugin.limit * 1) {
                      //   this.reply(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buy*`, m)
                         this.sendButton(m.chat, `Limit anda habis, silahkan beli melalui *${usedPrefix}buyall* atau *${usedPrefix}hadiah*`, author, null, [['Buy Limit', '/buyall'], ['Hadiah', '/hadiah']], m)
                         continue // Limit habis
@@ -793,7 +753,6 @@ module.exports = {
                         isBotAdmin,
                         isPrems,
                         isBans,
-                        isCreated,
                         chatUpdate,
                     }
                     try {
@@ -834,10 +793,10 @@ module.exports = {
                 const quequeIndex = this.msgqueque.indexOf(m.id || m.key.id)
                 if (quequeIndex !== -1) this.msgqueque.splice(quequeIndex, 1)
             }
-            //console.log(db.data.users[m.sender])
-            let user, stats = db.data.stats
+            //console.log(global.db.data.users[m.sender])
+            let user, stats = global.db.data.stats
             if (m) {
-                if (m.sender && (user = db.data.users[m.sender])) {
+                if (m.sender && (user = global.db.data.users[m.sender])) {
                     user.exp += m.exp
                     user.limit -= m.limit * 1
                 }
@@ -866,19 +825,19 @@ module.exports = {
                 }
             }
 
-             try {
-                 require('./lib/print')(m, this)
-             } catch (e) {
-                 console.log(m, m.quoted, e)
-             }
-            if (opts['autoread']) await this.readMessages([m.key]) //this.chatRead(m.chat, m.isGroup ? m.sender : undefined, m.id || m.key.id).catch(() => { })
+            // try {
+            //     require('./lib/print')(m, this)
+            // } catch (e) {
+            //     console.log(m, m.quoted, e)
+            // }
+            if (opts['autoread']) await this.chatRead(m.chat, m.isGroup ? m.sender : undefined, m.id || m.key.id).catch(() => { })
         }
     },
     async participantsUpdate({ id, participants, action }) {
         if (opts['self']) return
         // if (id in conn.chats) return // First login will spam
         if (global.isInit) return
-        let chat = db.data.chats[id] || {}
+        let chat = global.db.data.chats[id] || {}
         let text = ''
         switch (action) {
             case 'add':
@@ -916,7 +875,7 @@ module.exports = {
             let chats = Object.entries(conn.chats).find(([_, data]) => data.messages?.[id])
             if (!chats) return
             let msg = chats instanceof String ? JSON.parse(chats[1].messages[id]) : chats[1].messages[id]
-            let chat = db.data.chats[msg.key.remoteJid] || {}
+            let chat = global.db.data.chats[msg.key.remoteJid] || {}
             if (chat.delete) return
             await this.reply(msg.key.remoteJid, `
 Terdeteksi @${participant.split`@`[0]} telah menghapus pesan
@@ -932,29 +891,6 @@ Untuk mematikan fitur ini, ketik
     }
 },
 
-conn.ws.on('CB:call', async function callUpdatePushToDb(json) {
-        let call = json.tag
-        let callerId = json.attrs.from
-        console.log({ call, callerId })
-        let users = db.data.users
-        let user = users[callerId] || {}
-        if (user.whitelist) return
-        if (!db.data.settings[conn.user.jid].anticall) return
-        switch (conn.callWhitelistMode) {
-          case 'mycontact':
-            if (callerId in conn.contacts && 'short' in conn.contacts[callerId])
-            return
-          break
-        }
-        const data = global.owner.filter(([id, isCreator]) => id && isCreator)
-        let sentMsg = await conn.reply(callerId, `Sistem otomatis block, jangan menelepon bot silahkan hubungi owner untuk dibuka!`)
-        await conn.sendContact(callerId, data.map(([id, name]) => [id, name]), sentMsg)
-        await conn.updateBlockStatus(callerId, 'block')
-        await conn.reply(owner[0]+'@s.whatsapp.net', `*NOTIF CALLER BOT!*\n\n@${callerId.split`@`[0]} telah menelpon *${conn.user.name}*\n\n ${callerId.split`@`[0]}\n`, null, { mentions: [callerId] })
-        conn.delay(10000) // supaya tidak spam
-    })
-
-/*
 conn.ws.on('CB:call', async (json) => {
     console.log(json.content)
     const callerId = json.content[0].attrs['call-creator']
@@ -964,10 +900,10 @@ conn.ws.on('CB:call', async (json) => {
     await sleep(8000)
     await conn.updateBlockStatus(callerId, "block")
     }
-    })*/
+    })
 /*async onCall(json) {
     let { from } = json[2][0][1]
-    let users = db.data.users
+    let users = global.db.data.users
     let user = users[from] || {}
     if (user.whitelist) return
     switch (this.callWhitelistMode) {
@@ -986,9 +922,8 @@ global.dfail = (type, m, conn) => {
         rowner: 'Perintah ini hanya dapat digunakan oleh _*Orang Ganteng*_',
         owner: 'Perintah ini hanya dapat digunakan oleh _*Orang Ganteng*_!',
         mods: 'Perintah ini hanya dapat digunakan oleh _*Moderator*_ !',
-        premium: '*Premium*\n1 Months *IDR 5000*\n1 Years *IDR 60000*\n\nHubungi *owner* kami..', 
+        premium: '*Premium*\n1 Months *IDR 10000*\n1 Years *IDR 90000*\n\nHubungi *owner* kami..', 
         banned: 'Perintah ini hanya untuk pengguna yang terbanned..',
-        created: 'Perintah ini hanya pengguna yang sudah membuat base\nContoh: #createbase RenBot',
         group: 'Perintah ini hanya dapat digunakan di grup!',
         private: 'Perintah ini hanya dapat digunakan di Chat Pribadi!',
         admin: 'Perintah ini hanya untuk *Admin* grup!',
@@ -997,7 +932,6 @@ global.dfail = (type, m, conn) => {
         restrict: 'Fitur ini di *disable*!'
     }[type]
     if (msg) return m.reply(msg)
- 
 }
 
 let fs = require('fs')
