@@ -24,7 +24,7 @@ let handler = async (m, { conn, command, usedPrefix, text, isPrems, isOwner }) =
   if (yt === false) throw 'semua server gagal'
   if (yt2 === false) throw 'semua server gagal'
   let { dl_link, thumb, title, filesize, filesizeF } = yt
-  await conn.sendHydrated(m.chat, await (await fetch(thumb)).buffer(), `
+  await conn.sendHydrated(m.chat, `
 *Judul:* ${title}
 *Ukuran File Audio:* ${filesizeF}
 *Ukuran File Video:* ${yt2.filesizeF}
