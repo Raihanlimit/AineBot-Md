@@ -21,9 +21,9 @@ let handler = async (m, { conn, command, usedPrefix, text, isPrems, isOwner }) =
       m.reply(`Server ${server} error!${servers.length >= i + 1 ? '' : '\nmencoba server lain...'}`)
     }
   }
-  if (yt === false) throw 'semua server gagal'
-  if (yt2 === false) throw 'semua server gagal'
+  if (yt === false) throw 'All servers can\'t 😕'
   let { dl_link, thumb, title, filesize, filesizeF } = yt
+  let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
   conn.sendFile(m.chat, thumb, 'thumbnail.jpg', `
 *Judul:* ${title}
 *Ukuran File Audio:* ${filesizeF}
@@ -33,7 +33,7 @@ let handler = async (m, { conn, command, usedPrefix, text, isPrems, isOwner }) =
 }
 handler.help = ['play'].map(v => v + ' <pencarian>')
 handler.tags = ['downloader']
-handler.command = /^(dj|musik|song|lagu|p(lay)?)$/i
+handler.command = /^play2?$/i
 
 handler.exp = 1000
 handler.limit = true
