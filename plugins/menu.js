@@ -35,23 +35,34 @@ let tags = {
 }
 const defaultMenu = {
   before: `
-Hai, %ucapan %name! 🍟
+Hai, %ucapan %name! 
   
-*Waktu:* 
-%wib WIB
-%wita WITA
-%wit WIT
-*Hari:* %week
-*Tanggal:* %date
-*Uptime:* %uptime (%muptime)
-
-*Limit:* %limit
-*Level:* %level
-*XP:* %exp
+╭━━━━━━━━━━━━━━━┈ꕥ
+│   *Hai*, %name 
+└┬──────────────┈ ⳹
+┌│⬡ *Tersisa* : %limit Limit
+││⬡ *Role* : %role
+││⬡ *Level* : %level [%exp / %maxexp]
+││⬡ *Exp* : %totalexp XP
+└┬──────────────┈ ⳹
+┌┤ *${ucapan()} %name*
+│└──────────────┈ ⳹
+│     *〔Tanggal〕*
+│
+│    *Hari:* %week
+│    *Tanggal:* %date
+│    *Uptime:* %uptime (%muptime)
+│        
+│    *〔 Waktu 〕*
+│           
+│    %wib WIB
+│    %wita WITA
+│    %wit WIT
+└───────────────┈ ⳹
 %readmore`.trimStart(),
-  header: ' *%category*',
-  body: ' • %cmd %islimit %isPremium',
-  footer: '\n',
+  header: '┌─〔 %category 〕',
+  body: '├ %cmd %islimit %isPremium',
+  footer: '└────\n',
   after: `*Made by Ren*
 `,
 }
