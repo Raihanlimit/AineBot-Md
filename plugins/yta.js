@@ -1,41 +1,17 @@
+let { MessageType, MessageOptions, Mimetype } = require('@adiwajshing/baileys')
 let limit = 50
-// const { servers, yta } = require('../lib/y2mate')
-const { youtubedl, youtubedlv2 } = require('@bochilteam/scraper')
-let handler = async (m, { conn, args, isPrems, isOwner }) => {
-  if (!args || !args[0]) throw 'Uhm... urlnya mana?'
-  let chat = global.db.data.chats[m.chat]
-  // let server = (args[1] || servers[0]).toLowerCase()
-  const isY = /y(es)/gi.test(args[1])
-  const { thumbnail, audio: _audio, title } = await youtubedl(args[0]).catch(async _ => await youtubedlv2(args[0]))
-  let audio, link = '', lastError
-  for (let i in _audio) {
-    try {
-      audio = _audio[i]
-      link = await audio.download()
-      if (link) break
-    } catch (e) {
-      lastError = e
-      continue
-    }
-  }
-  if (!link) throw lastError
-  // let { dl_link, thumb, title, filesize, filesizeF } = await yta(args[0], servers.includes(server) ? server : servers[0])
-  let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < audio.fileSize
-  if (!isY) conn.sendFile(m.chat, thumbnail, 'thumbnail.jpg', `
-*Title:* ${title}
-🗎 *Filesize:* ${audio.fileSizeH}
-*${isLimit ? 'Pakai ' : ''}Link:* ${link}
-`.trim(), m)
-  if (!isLimit) conn.sendFile(m.chat, link, title + '.mp3', `
-*Title:* ${title}
-🗎 *Filesize:* ${audio.fileSizeH}
-`.trim(), m, null, {
-    asDocument: chat.useDocument
-  })
+const { servers, yta } = require('../lib/y2mate')
+let handler = async(m, { conn, args, isPrems, isOwner }) => {
+    if (!args || !args[0]) return conn.reply(m.chat, 'Uhm... urlnya mana?', m)
+    let chat = global.db.data.chats[m.chat]
+    let server = (args[1] || servers[0]).toLowerCase()
+    let { dl_link, thumb, title, filesize, filesizeF } = await yta(args[0], servers.includes(server) ? server : servers[0])
+    let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
+    m.reply(wait)
+    if (!isLimit) await conn.sendMessage(m.chat, { document: { url: dl_link}, mimetype: 'audio/mpeg', fileName: `${title}.mp3`}, {quoted: m})
 }
-handler.help = ['mp3', 'a'].map(v => 'yt' + v + ` <url> <without message>`)
+handler.help = ['ytmp3 <query>']
 handler.tags = ['downloader']
-handler.command = /^yt(a|mp3)$/i
+handler.command = /^yt(a(udio)?|mp3|musik|lagu)$/i
 handler.limit = true
-handler.exp = 0
 module.exports = handler
