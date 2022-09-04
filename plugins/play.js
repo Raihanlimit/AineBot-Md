@@ -23,7 +23,6 @@ let handler = async (m, { conn, command, usedPrefix, text, isPrems, isOwner }) =
   }
   if (yt === false) throw 'All servers can\'t 😕'
   let { dl_link, thumb, title, filesize, filesizeF } = yt
-  let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
   conn.sendFile(m.chat, thumb, 'thumbnail.jpg', `
 *Judul:* ${title}
 *Ukuran File Audio:* ${filesizeF}
