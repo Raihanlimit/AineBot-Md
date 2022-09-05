@@ -1,21 +1,18 @@
-let handler = async (m, { conn, usedPrefix, command }) => {
-    let _uptime = process.uptime() * 1000
-    let uptimex = clockString(_uptime)
-    conn.sendMessage(m.chat, `Aktif selama:\n*${uptimex}*`.trim(), wm, 'bot stats', usedPrefix + 'stat', 'pinger', usedPrefix + 'ping', 'kembali ke menu', usedPrefix + 'menu', m)
+let fs = require('fs')
+let handler = async (m, { conn, args, command }) => {
+
+    let teks = `\n\t\t*「 \t ${clockString(process.uptime())} \t」*\n`
+conn.sendMessage(m.chat, {text: teks, jpegThumbnail:  global.thumb}, { quoted: m} )
 }
+
 handler.help = ['runtime']
 handler.tags = ['info']
-handler.command = /^(uptime|runtime)$/i
-
+handler.command = /^(up|run)time$/i
 module.exports = handler
 
 function clockString(ms) {
-    let days = Math.floor(ms / (24 * 60 * 60 * 1000));
-    let daysms = ms % (24 * 60 * 60 * 1000);
-    let hours = Math.floor((daysms) / (60 * 60 * 1000));
-    let hoursms = ms % (60 * 60 * 1000);
-    let minutes = Math.floor((hoursms) / (60 * 1000));
-    let minutesms = ms % (60 * 1000);
-    let sec = Math.floor((minutesms) / (1000));
-    return days + " Hari " + hours + " Jam " + minutes + " Menit " + sec + " Detik";
+	let h = isNaN(ms) ? '--' : Math.floor(ms % (3600 * 24) / 3600)
+	let m = isNaN(ms) ? '--' : Math.floor(ms % 3600 / 60)
+	let s = isNaN(ms) ? '--' : Math.floor(ms % 60)
+        return [h, m, s].map(v => v.toString().padStart(2, 0)).join(':')
 }
