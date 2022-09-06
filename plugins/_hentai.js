@@ -8,8 +8,9 @@ let handler = async (m, { conn }) => {
 handler.command = ['hentai']
 
 handler.help = ['hentai']
-handler.tags = ['Menu 18+']
+handler.tags = ['18+']
  
+handler.private = true
 handler.premium = true
 global.ecchi = [
 	"https://preview.redd.it/efy32fvn8zv81.jpg?width=640&crop=smart&auto=webp&s=8200f495446861ae330114febc8af9fef31c4c7f",
