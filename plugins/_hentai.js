@@ -7,8 +7,8 @@ let handler = async (m, { conn }) => {
 
 handler.command = ['hentai']
 
-handler.help = ['ʜᴇɴᴛᴀɪ']
-handler.tags = ['menu 18']
+handler.help = ['hentai']
+handler.tags = ['Menu 18+']
  
 handler.premium = true
 global.ecchi = [
