@@ -1,5 +1,5 @@
 let { facebookDl } = require('./scraper.js')
-const { savefrom } = require('@bochilteam/scraper')
+let { savefrom } = require('@bochilteam/scraper')
 
 let handler = async (m, { conn, args }) => {
 	if (!args[0]) throw 'Input URL'
