@@ -19,4 +19,5 @@ handler.all = async function(m) {
 		await this.updateBlockStatus(m.chat, "block")
 	}
 }
+
 module.exports = handler
