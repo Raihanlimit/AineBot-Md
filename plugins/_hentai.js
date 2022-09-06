@@ -3,7 +3,7 @@ let fetch = require('node-fetch')
 let handler = async (m, { conn }) => {  
 	let url = ecchi[Math.floor(Math.random() * ecchi.length)]
 
-  await conn.sendButton(m.chat, '🔹Huwaaaah 🥵', author, url, [['Author ➡', `#hentai`]], m)}
+  await conn.sendButton(m.chat, '🔹Huwaaaah 🥵', author, url, [['Next ➡', `#hentai`]], m)}
 
 handler.command = ['hentai']
 
