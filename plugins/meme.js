@@ -9,7 +9,7 @@ let handler = async (m, { conn }) => {
 }
 
 handler.help = ['meme']
-handler.tags = ['Random']
+handler.tags = ['random']
 handler.register = false
 handler.command = /^(meme)$/i
 handler.limit = true
