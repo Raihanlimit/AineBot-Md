@@ -1,4 +1,4 @@
-const onecak = require("1cak");
+const onecak = require("1cak")
 const fetch = require('node-fetch')
 const axios = require('axios')
 let handler = async (m, { conn, text, usedPrefix, command }) => {
