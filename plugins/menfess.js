@@ -2,7 +2,7 @@ let fetch = require('node-fetch')
 let handler = async(m, {
 	conn, text, usedPrefix, command, args
 }) => {
-	if (!args[0]) return conn.reply(m.chat, `Silahkan masukan pesannya\nContoh Penggunaan: ${usedPrefix + command} ${nomorowner} pesan untuknya`, m)
+	if (!args[0]) return conn.reply(m.chat, `Maaf Format Anda Salah\n\nContoh:\n.menfess 62×××× masukkan pesannya`, m)
 	let mention
     if (m.isGroup) mention = m.mentionedJid[0] ? m.mentionedJid[0] : m.sender
     else mention = m.sender
