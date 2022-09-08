@@ -17,7 +17,7 @@ let handler = async(m, {
 💌 Pesan ${pesan}
 ${htjava} ${txt}
 `
-	let cap = `PENGIRIM MENFES ${pesan}
+	let cap = `PENGIRIM MENFESS
 Anda Ingin Mengirimkan Pesan ke pacar/sahabat/teman/doi/
 mantan?, tapi Tidak ingin tau siapa Pengirimnya?
 Kamu bisa menggunakan Bot ini
