@@ -1,19 +1,19 @@
 let handler = async(m, { conn, text, usedPrefix }) => {
 let [number, pesan] = text.split `|`
 
-    if (!number) return conn.reply(m.chat, 'Maaf Format Anda Salah\n\nContoh:\n.menfess 62××××|hallo sayang', m)
-    if (!pesan) return conn.reply(m.chat, 'Maaf Format Anda Salah\n\nContoh:\n.menfess 62××××|hallo sayang', m)
+    if (!number) return conn.reply(m.chat, 'Maaf Format Anda Salah\n\nContoh Penggunaan:\n.menfess 62××××|hai bang', m)
+    if (!pesan) return conn.reply(m.chat, 'Maaf Format Anda Salah\n\nContoh Penggunaan:\n.menfess 62××××|hai bang', m)
     if (text > 500) return conn.reply(m.chat, 'Teks Kepanjangan!', m)
     
     let user = global.db.data.users[m.sender]
 
     let korban = `${number}`
     var nomor = m.sender
-    let spam1 = `Hi Saya Bot Ada Yang Kirim Pesan Ke Kamu
+    let spam1 = `Hai Saya Adalah Bot, Ada Yang Mengirim Pesan Ke Kamu
 Seseorang Temanmu
 (Pengirim Rahasia)
 ⬡──⬡─────────⬡──⬡
-📫Pengirim : Someone
+📫Pengirim : Manusia
 💌 Pesan : ${pesan}
 ⬡──⬡─────────⬡──⬡
 Maaf Anda Belum Bisa Membalas ke Pengirim
