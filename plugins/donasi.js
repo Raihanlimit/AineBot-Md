@@ -11,7 +11,7 @@ let handler = async m => m.reply(`
 │ • 085851642307 ( IM3 )
 │
 │ - Saweria
-│ •https://saweria.co/Mochraihans
+│ • https://saweria.co/Mochraihans
 │
 ╰───────────
 `.trim()) // Tambah sendiri kalo mau
