@@ -5,7 +5,7 @@ Contoh : ${_p}${command} ${pickRandom(['Ziv San','Fory'])}`
      let ziv = `https://api.violetics.pw/api/ephoto360/${command}?apikey=aa37-2814-15e2&text=${text}`
      conn.sendButton(m.chat, 'https://telegra.ph/file/28f709a2a84758d9c9286.jpg', `Tunggu Sebentar Lagi Di Proses...\n\nKalo Error/Bug Silakan Chat 
 @${global.owner[1]}`, wm, 'Owner', '.owner', m)
-     conn.sendButton(m.chat, ren, 'Nih', wm3, 'Thanks', 'thanks', m, {
+     conn.sendButton(m.chat, ziv, 'Nih', wm3, 'Thanks', 'thanks', m, {
     quoted: m,
     contextInfo: { forwardingScore: 99999, isForwarded: true,
         externalAdReply: {
