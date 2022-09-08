@@ -14,10 +14,10 @@ let handler = async(m, {
 	let tujuan = `👋 Saya *${conn.user.name}*, Pesan Untuk Kamu
 👥 Dari : wa.me/${pengirim.split("@s.whatsapp.net")[0]}
 
-${htki} 💌 Pesan ${htka}
+💌 Pesan ${pesan}
 ${htjava} ${txt}
 `
-	let cap = `${htki} PENGIRIM MENFES ${htka}
+	let cap = `PENGIRIM MENFES ${pesan}
 Anda Ingin Mengirimkan Pesan ke pacar/sahabat/teman/doi/
 mantan?, tapi Tidak ingin tau siapa Pengirimnya?
 Kamu bisa menggunakan Bot ini
