@@ -6,8 +6,8 @@ let json = await res.json();
 let url = json[Math.floor(Math.random() * json.length)]
 await conn.sendButtonImg(m.chat, await (await fetch(url.image)).buffer(), 'memeindo', 'Next', '.meme', m)
 }
-handler.command = /^(meme)$/i
+handler.command = /^(memeindo)$/i
 handler.tags = ['random']
-handler.help = ['meme']
+handler.help = ['memeindo']
 handler.limit = true
 module.exports = handler
