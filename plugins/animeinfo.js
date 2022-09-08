@@ -22,7 +22,7 @@ let animeingfo = `✨️ *Title:* ${title}
   conn.sendFile(m.chat, image_url, '', animeingfo, m)
 }
 handler.help = ['anime <judul>']
-handler.tags = ['internet']
+handler.tags = ['anime']
 handler.command = /^(anime|animeinfo)$/i
 handler.limit = true
 
