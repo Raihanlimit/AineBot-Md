@@ -5,7 +5,7 @@ let handler = async (m, { conn, command }) => {
 	conn.sendButton(m.chat, 'Nih FanArtnya ', wm, await(await fetch(url)).buffer(), [['Next',`.${command}`]],m)
 }
 handler.command = /^(fanart)$/i
-handler.tags = ['internet']
+handler.tags = ['anime']
 handler.help = ['fanart']
 handler.limit = true
 handler.premium = false
