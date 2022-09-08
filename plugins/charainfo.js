@@ -15,7 +15,7 @@ let charaingfo = `💬 *Name:* ${name} ${name_kanji}
   // fix kan gus, ga bisa send gambar, malah jadi .bin file
 }
 handler.help = ['character <nama>']
-handler.tags = ['internet']
+handler.tags = ['anime']
 handler.command = /^(chara|character)$/i
 handler.limit = true
 
