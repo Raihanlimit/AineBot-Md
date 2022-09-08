@@ -16,6 +16,7 @@ let tags = {
   'admin': 'Admin',
   'group': 'Group',
   'internet': 'Internet',
+  'anime': 'Anime',
   'anonymous': 'Anonymous Chat',
   'downloader': 'Downloader',
   'berita': 'Berita',
