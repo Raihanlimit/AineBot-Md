@@ -17,7 +17,7 @@ try {
     body
   })
   if (res.status !== 200) throw await res.json()
-  await conn.sendFile(m.chat, await res.buffer(), 'Enhance.jpg', 'Nih Kak', m)
+  conn.sendFile(m.chat, await res.buffer(), 'Enhance.jpg', 'Nih Kak', m)
 } catch (e) {
   m.reply('Ada yang Erorr!')
  }
