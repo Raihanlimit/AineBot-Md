@@ -4,7 +4,7 @@ let handler = async (m, { conn, args }) => {
   if (!args[0]) throw 'Masukkan Textnya. Contoh: Ren|Bot'
   m.reply('Proses...')
   let res = `https://ziy.herokuapp.com/api/maker/girlneko?text1=${response[0]}&text2=${response[1]}&apikey=xZiyy`
-  conn.sendFile(m.chat, res, 'neko.jpg', `Sudah Jadi`, m, false)
+  conn.sendFile(m.chat, res, 'neko.jpg', `Done Sir`, m, false)
 }
 handler.help = ['logoneko'].map(v => v + ' <text|text>')
 handler.tags = ['maker']
