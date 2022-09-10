@@ -13,7 +13,7 @@ let handler = async (m, { conn, text }) => {
 	img.blur(isNaN(level) ? 5 : parseInt(level))
 	img.getBuffer('image/jpeg', (err, buffer) => {
 		if (err) throw err?.message || `Tidak dapat memblur gambar`
-		m.reply
+		m.reply(buffer)
 	})
 }
 handler.command = /^(blur)$/i
