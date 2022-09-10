@@ -1,4 +1,4 @@
-le fetch = require('node-fetch')
+let fetch = require('node-fetch')
 let handler = async (m, { conn, args }) => {
    let response = args.join(' ').split('|')
   if (!args[0]) throw 'Masukkan Parameter'
