@@ -34,7 +34,7 @@ let tags = {
   'audio': 'Audio',
   'maker': 'Maker',
   'random': 'Random',
-  'menu 18+': 'Menu 18+',
+  'premium': 'Premium',
 }
 const defaultMenu = {
   before: `
