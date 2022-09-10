@@ -1,5 +1,5 @@
 let fetch = require('node-fetch')
-let FormData = require('form-data')
+const FormData = require('form-data')
 
 let handler = async (m) => {
 
