@@ -31,10 +31,10 @@ ${isLimit ? `âŒ *Ukuran file di atas ${limit} MB, download sendiri*\n` : ''}ðŸš
   }
 }
 handler.help = ['mediafire'].map(v => v + ' <url>')
-handler.tags = ['downloader']
+handler.tags = ['downloader', 'premium']
 handler.command = /^(me?d(ia)?f(ire)?)$/i
 
-handler.limit = true
+handler.premium = true
 handler.group = false
 
 module.exports = handler
