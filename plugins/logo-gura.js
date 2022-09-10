@@ -1,7 +1,7 @@
 let fetch = require('node-fetch')
 let handler = async (m, { conn, args }) => {
 let response = args.join(' ').split('|')
-  if (!args[0]) throw 'Masukkan Parameter'
+  if (!args[0]) throw 'Masukkan Textnya. Contoh: Ren'
   m.reply('Proses...')
   let res = `https://api-xzn-yotsuya.up.railway.app/docs/gura?name=${response[0]}`
   conn.sendFile(m.chat, res, 'gura.jpg', `Sudah Jadi`, m, false)
