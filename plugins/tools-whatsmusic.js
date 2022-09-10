@@ -1,7 +1,7 @@
 let fs = require('fs')
 let cheerio = require('cheerio')
 let fetch = require('node-fetch')
-const FormData = require('form-data')
+let FormData = require('form-data')
 
 let handler = async (m) => {
 	let q = m.quoted ? m.quoted : m
