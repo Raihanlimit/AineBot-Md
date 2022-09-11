@@ -15,7 +15,7 @@ let handler = async(m, { conn, args, isPrems, isOwner }) => {
   contextInfo: { mentionedJid: [m.sender],
     externalAdReply :{
     showAdAttribution: true,
-    mediaUrl: ${args[0]}`,
+    mediaUrl: data.sc,
     mediaType: 2,
     description: deslink, 
     title: titlink,
