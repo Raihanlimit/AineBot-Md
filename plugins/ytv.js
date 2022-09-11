@@ -17,7 +17,7 @@ let handler = async(m, { conn, args, isPrems, isOwner }) => {
 //*Filesize:* ${filesizeF}
 //   `.trim(), m, false, { thumbnail: Buffer.alloc(0), mimetype: 'video/mp4' })
 }
-handler.help = ['ytmp4 <link>']
+handler.help = ['mp4','v',''].map(v => 'yt' + v + ` <url> [server: ${servers.join(', ')}]`)
 handler.tags = ['downloader']
 handler.command = /^yt(v(idi?e?o)?|mp4)?$/i
 handler.limit = true
