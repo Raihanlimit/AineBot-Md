@@ -18,7 +18,7 @@ let handler = async(m, { conn, args, isPrems, isOwner }) => {
     mediaUrl: data.sc,
     mediaType: 2,
     description: data.deslink , 
-    title: run,
+    title: titlink,
     body: wm,
     thumbnail: bg,
     sourceUrl: data.sc
