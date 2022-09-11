@@ -1,7 +1,7 @@
 let handler = async (m, { conn, usedPrefix, command }) => {
     let _uptime = process.uptime() * 1000
     let uptimex = clockString(_uptime)
-    conn.sendMessage(m.chat, `Aktif selama:\n*${uptimex}*`.trim()
+    conn.sendMessage(m.chat, `Aktif selama:\n*${uptimex}*`
 }
 handler.help = ['runtime']
 handler.tags = ['info']
