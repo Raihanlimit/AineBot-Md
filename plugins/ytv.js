@@ -15,11 +15,11 @@ let handler = async(m, { conn, args, isPrems, isOwner }) => {
   contextInfo: { mentionedJid: [m.sender],
     externalAdReply :{
     showAdAttribution: true,
-    mediaUrl: data.sc,
+    mediaUrl: ${args[0]}`,
     mediaType: 2,
-    description: data.deslink , 
+    description: deslink, 
     title: titlink,
-    body: wm,
+    body: bodlink,
     thumbnail: bg,
     sourceUrl: data.sc
      }}
