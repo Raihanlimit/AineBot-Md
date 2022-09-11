@@ -9,7 +9,7 @@ let handler = async(m, { conn, args, isPrems, isOwner }) => {
     let isLimit = (isPrems || isOwner ? 99 : limit) * 1024 < filesize
     let _thumb = {}
     try { _thumb = { thumbnail: await (await fetch(thumb)).buffer() } } catch (e) {}
-    m.reply(wait)
+    m.reply
     if (!isLimit) await conn.sendButtonVid(m.chat, dl_link, `*Title:* ${title}\n*Filesize:* ${filesizeF}`.trim(), wm, 'menu', '.?', m)
 	//await conn.sendMessage(m.chat, { document: { url: dl_link }, mimetype: 'video/mp4', fileName: title + `.mp4`}, {quoted: m})
 //conn.sendFile(m.chat, dl_link, title + '.mp4', `
