@@ -1,4 +1,4 @@
-let { toAudio } from '../lib/converter.js'
+let { toAudio } = require('../lib/converter.js')
 
 let handler = async (m, { conn, usedPrefix, command }) => {
     let q = m.quoted ? m.quoted : m
