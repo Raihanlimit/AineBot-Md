@@ -22,7 +22,7 @@ let handler = async (m, { conn, text, args, usedPrefix, command }) => {
 🧷 *BATCHSD:* ${result.batchSD}
 📎 *BATCHHD:* ${result.batchHD}
 `
-conn.sendButton(m.chat, datathumb, otaku, wm, 'menu', '.menu', m)
+conn.sendMessage(m.chat, datathumb, otaku, wm, 'menu', '.menu', m)
 }
 
 handler.help = ['otakudesu'].map(v => v + ' <Apa>')
