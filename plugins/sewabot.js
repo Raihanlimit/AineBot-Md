@@ -29,7 +29,7 @@ _*NOTE : OWNER TIDAK MENJAMIN BOT AKAN ONLINE 24 JAM!*_
   title:'Klik untuk order',
   products:[{productId:'7487741964584083'}]}],
   headerImage: { productId: '7487741964584083',
-  jpegThumbnail: baper },
+  jpegThumbnail: pepe },
   businessOwnerJid: `62882009085754@s.whatsapp.net`
   },
   footerText: '© *WhatsApp Bot*',
