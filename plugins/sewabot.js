@@ -2,7 +2,6 @@ let fetch = require('node-fetch')
 let handler = async (m, { conn }) => {
   let pepe = 'https://telegra.ph/file/2e2eb7d093fec08fd00d4.jpg'
   let baper = await fetch(pepe).then(a => a.buffer())
-
   let aine = '19378825461@s.whatsapp.net'
   let a = await conn.profilePictureUrl(conn.user.jid, 'image').catch((_) => "https://telegra.ph/file/24fa902ead26340f3df2c.png")
   let b = await conn.profilePictureUrl(owner[0]+'@s.whatsapp.net', 'image').catch((_) => "https://telegra.ph/file/24fa902ead26340f3df2c.png")
@@ -29,7 +28,7 @@ _*NOTE : OWNER TIDAK MENJAMIN BOT AKAN ONLINE 24 JAM!*_
   title:'Klik untuk order',
   products:[{productId:'7487741964584083'}]}],
   headerImage: { productId: '7487741964584083',
-  jpegThumbnail: pepe },
+  jpegThumbnail: baper },
   businessOwnerJid: `62882009085754@s.whatsapp.net`
   },
   footerText: '© *WhatsApp Bot*',
@@ -37,7 +36,6 @@ _*NOTE : OWNER TIDAK MENJAMIN BOT AKAN ONLINE 24 JAM!*_
   conn.relayMessage(prepare.key.remoteJid,prepare.message,{messageId:prepare.key.id})
   const data = global.owner.filter(([id, isCreator]) => id && isCreator)
   conn.sendContact(m.chat, data.map(([id, name]) => [id, name]), m)
-
 }
 handler.help = ['sewa']
 handler.tags = ['main']
