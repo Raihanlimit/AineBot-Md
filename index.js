@@ -54,6 +54,7 @@ function start(file) {
   p.on('exit', code => {
     isRunning = false
     console.error('Exited with code:', code)
+    start('main.js')
     if (code === 0) return
     fs.watchFile(args[0], () => {
       fs.unwatchFile(args[0])
@@ -67,5 +68,3 @@ function start(file) {
     })
   // console.log(p)
 }
-
-start('main.js')
